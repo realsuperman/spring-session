@@ -102,3 +102,4 @@ public class LoginController {
         response.addCookie(cookie); // 그리고 쿠키를 서버에서 넘겨주면 웹 브라우저는 쿠키 만료를 인식
     }
 }
+//getSession은 두가지 일을 수행하는 것 같음 -> 세션 생성 or 세션 찾기
