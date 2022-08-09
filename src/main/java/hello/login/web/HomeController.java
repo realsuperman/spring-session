@@ -2,6 +2,7 @@ package hello.login.web;
 
 import hello.login.domain.member.Member;
 import hello.login.domain.member.MemberRepository;
+import hello.login.web.argumentResolver.Login;
 import hello.login.web.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -58,11 +59,19 @@ public class HomeController {
         model.addAttribute("member",member);
         return "loginHome";
     }
-    @GetMapping("/")
+    //@GetMapping("/")
     public String homeLogin4(@SessionAttribute(name=SessionConst.LOGIN_MEMBER,required = false) Member member, HttpServletRequest request, Model model){
         // 넘어오는 쿠키 값에서 세션값을 찾고 있으면 Member객체에 알아서 넣어줌
         if(member==null) return "home";
         model.addAttribute("member",member);
+        return "loginHome";
+    }
+
+    @GetMapping("/")
+    public String homeLogin5(@Login Member loginMember,Model model){
+        // 넘어오는 쿠키 값에서 세션값을 찾고 있으면 Member객체에 알아서 넣어줌
+        if(loginMember==null) return "home";
+        model.addAttribute("member",loginMember);
         return "loginHome";
     }
 }
